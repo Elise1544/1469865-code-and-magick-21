@@ -22,22 +22,27 @@ var shuffle = function (array) {
   return array;
 };
 
-var finalNames = shuffle(names);
-var finalSurnames = shuffle(surnames);
-
-var finalName = [];
-for (var i = 0; i < finalNames.length; i++) {
-  finalName[i] = finalNames[i] + ` ` + finalSurnames[i];
-}
+var fullnames = [];
+var getFullName = function (names, surnames) {
+  for (var i = 0; i < names.length; i++) {
+    fullnames[i] = shuffle(names)[i] + ` ` + shuffle(surnames)[i];
+  };
+  return fullnames;
+};
 
 var wizards = [];
-for (var j = 0; j < 4; j++) {
-  wizards[j] = {
-    name: finalName[Math.floor(Math.random() * finalName.length)],
-    coatColor: coatColor[Math.floor(Math.random() * coatColor.length)],
-    eyesColor: eyesColor[Math.floor(Math.random() * eyesColor.length)]
-  };
+var players = function () {
+  for (var j = 0; j < 4; j++) {
+    wizards[j] = {
+      name: getFullName(names, surnames)[j],
+      coatColor: coatColor[Math.floor(Math.random() * coatColor.length)],
+      eyesColor: eyesColor[Math.floor(Math.random() * eyesColor.length)]
+    };
+  }
+  return wizards;
 }
+
+var wizards = players(fullnames, coatColor, eyesColor);
 
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
