@@ -23,10 +23,10 @@ var shuffle = function (array) {
 };
 
 var fullnames = [];
-var getFullName = function (names, surnames) {
+var getFullName = function () {
   for (var i = 0; i < names.length; i++) {
     fullnames[i] = shuffle(names)[i] + ` ` + shuffle(surnames)[i];
-  };
+  }
   return fullnames;
 };
 
@@ -40,9 +40,9 @@ var players = function () {
     };
   }
   return wizards;
-}
+};
 
-var wizards = players(fullnames, coatColor, eyesColor);
+wizards = players(fullnames, coatColor, eyesColor);
 
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
