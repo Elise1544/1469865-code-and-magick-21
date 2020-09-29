@@ -22,27 +22,29 @@ var shuffle = function (array) {
   return array;
 };
 
-var fullnames = [];
 var getFullName = function () {
+  var fullnames = [];
   for (var i = 0; i < names.length; i++) {
     fullnames[i] = shuffle(names)[i] + ` ` + shuffle(surnames)[i];
   }
   return fullnames;
 };
 
-var wizards = [];
+var fullName = getFullName(names, surnames);
+
 var players = function () {
+  var charmer = [];
   for (var j = 0; j < 4; j++) {
-    wizards[j] = {
-      name: getFullName(names, surnames)[j],
+    charmer[j] = {
+      name: fullName[j],
       coatColor: coatColor[Math.floor(Math.random() * coatColor.length)],
       eyesColor: eyesColor[Math.floor(Math.random() * eyesColor.length)]
     };
   }
-  return wizards;
+  return charmer;
 };
 
-wizards = players(fullnames, coatColor, eyesColor);
+var wizards = players(fullName, coatColor, eyesColor);
 
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
